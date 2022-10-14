@@ -17,7 +17,7 @@ export const GlassPaperRaw = styled(Paper)(({theme}) => ({
 }));
 
 
-export function GlassPaper({children, sx}) {
+export default function GlassPaper({children, sx}) {
   return (
     <GlassPaperRaw
       variant="outlined"

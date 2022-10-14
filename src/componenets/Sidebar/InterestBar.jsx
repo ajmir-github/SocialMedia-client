@@ -8,7 +8,7 @@
   IconButton
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import { GlassPaper } from "../MyComponents";
+import GlassPaper from "../GlassPaper";
 
 
 export default function InterestBar() {

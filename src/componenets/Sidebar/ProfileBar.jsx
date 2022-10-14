@@ -3,7 +3,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import FolderIcon from "@mui/icons-material/TagFaces";
 import LocationIcon from "@mui/icons-material/GpsFixed";
 import DateIcon from "@mui/icons-material/DateRange";
-import { GlassPaper } from "../MyComponents";
+import GlassPaper from "../GlassPaper";
 
 
 export default function ProfileBar() {

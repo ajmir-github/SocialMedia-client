@@ -9,7 +9,7 @@ import {
   CardMedia,
   Box
 } from '@mui/material';
-import { GlassPaper } from "../MyComponents";
+import GlassPaper from "../GlassPaper";
 
 export default function AdsCard({image, content}) {
   return (

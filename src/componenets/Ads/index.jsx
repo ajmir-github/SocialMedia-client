@@ -1,16 +1,8 @@
 import {
   Grid,
-  Paper,
-  Typography,
-  Button,
-  Card,
-  CardContent,
-  CardActions,
-  CardMedia,
-  Box
+
 } from '@mui/material';
 
-import { GlassPaper } from "../MyComponents";
 import AdsCard from './AdsCard';
 
 
