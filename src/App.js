@@ -1,61 +1,48 @@
-import { useEffect, useRef, useState } from "react";
-import { UserCollection } from "./services";
+// Imports
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createTheme, CssBaseline, ThemeProvider, colors, Box, styled } from "@mui/material";
 
-function App() {
-  const [users, setUsers] = useState([]);
-  const usernameRef = useRef(null);
-  const fullNameRef = useRef(null);
-  const passwordRef = useRef(null);
-  const onSubmit = e =>{
-    e.preventDefault();
-    const user = {
-      username:usernameRef.current.value,
-      fullName:fullNameRef.current.value,
-      password:passwordRef.current.value
-    };
-    UserCollection.create(user)
-      .then(res=>{
-        console.log(res.data)
-        getTheUsers()
-      })
-      .catch(error=>console.error(error))
+// Pages
+import Home from "./pages/home";
+import SignUp from "./pages/signUp";
+import SignIn from "./pages/signIn";
+
+// Componenets
+
+
+// background-color: #e5e5f7;
+// opacity: 0.8;
+// background: repeating-linear-gradient( -45deg, #444cf7, #444cf7 5px, #e5e5f7 5px, #e5e5f7 25px );
+const theme = createTheme({
+  palette:{
+    mode:"dark"
   }
-  const deleteUser = (id)=>{
-    UserCollection.delete(id)
-      .then(res=>{
-        console.log(res)
-        getTheUsers()
-      })
-      .catch(error=>console.error(error))
-  }
-  const getTheUsers = ()=>{
-    UserCollection.getAll()
-      .then(res=>setUsers(res.data))
-      .catch(error=>console.error(error))
-  }
-  useEffect(()=>{
-    getTheUsers()
-  }, [])
+ 
+});
+
+const BodyBackground = styled(Box)(({theme})=>({
+  background:"repeating-linear-gradient( -45deg, #1976d2, transparent 1px,  transparent 30px )",
+}))
+
+
+
+// Main Object
+export default function App() {
   return (
-    <div>
-      <h4>Create a user:</h4>
-      <form onSubmit={onSubmit}>
-        <input type="text" ref={usernameRef} placeholder="Username"/>
-        <input type="text" ref={fullNameRef} placeholder="Full Name"/>
-        <input type="password" ref={passwordRef} placeholder="Password"/>
-        <button type="submit">Create</button>
-      </form>
-      
+    <ThemeProvider theme={theme}>
+      <CssBaseline/>
+      <BodyBackground>
+        <BrowserRouter>
+          <Routes>
+              <Route path="/" index element={<Home/>}/>
 
-      <h4>Users</h4>
-      <ol>
-        {users.map(user=> <li key={user._id}>
-          <h4>{user.fullName}</h4>
-          <button onClick={()=> deleteUser(user._id)}>Delete</button>
-        </li>)}
-      </ol>
-    </div>
-  );
-}
+              <Route path="/sign_up" element={<SignUp/>}/>
 
-export default App;
+              <Route path="/sign_in" element={<SignIn/>}/>
+
+          </Routes>
+        </BrowserRouter>
+      </BodyBackground>
+    </ThemeProvider>
+  )
+};
