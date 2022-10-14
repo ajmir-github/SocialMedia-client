@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { themeActions } from "../state/themeState";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,12 +11,13 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -56,7 +59,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function NavBar() {
+  const themeMode = useSelector(s=>s.theme);
+  const dispatch = useDispatch();
+  const turnLightMode = ()=>{
+    dispatch({type:themeActions.lightMode})
+  }
+  const turnDarkMode = ()=>{
+    dispatch({type:themeActions.darkMode})
+  }
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -156,24 +167,16 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+         
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            SocialMedia
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -186,6 +189,17 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            {themeMode === "light"?(
+              <IconButton onClick={turnDarkMode} size="large" aria-label="show 4 new mails" color="inherit">
+                <DarkModeIcon />
+              </IconButton>
+            ):(
+              <IconButton onClick={turnLightMode} size="large" aria-label="show 4 new mails" color="inherit">
+                <LightModeIcon />
+              </IconButton>
+            )}
+           
+            
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
                 <MailIcon />

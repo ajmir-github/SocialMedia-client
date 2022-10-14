@@ -34,7 +34,7 @@ export default function ProfileBar() {
       </Grid>
 
       <Grid item>
-        <List dense={1}>
+        <List dense>
             <ListItem
               secondaryAction={
                 <IconButton edge="end" aria-label="edit">
