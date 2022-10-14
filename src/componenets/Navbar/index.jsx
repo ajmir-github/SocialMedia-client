@@ -1,260 +1,93 @@
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import {
+  ToggleMenu,
+  useMenu
+} from "../toggleMenu";
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import { useThemeActions } from "../../hooks/useThemeActions";
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import LogoIcon from '@mui/icons-material/Explore';
+import { Grid, MenuItem } from '@mui/material';
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
-
-export default function Navbar() {
-  const {
-    themeMode,
-    turnLightMode,
-    turnDarkMode
-  } = useThemeActions();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      {themeMode === "light"?(
-        <MenuItem onClick={turnDarkMode}>
-          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <DarkModeIcon />
-          </IconButton>
-          <p>Light</p>
-        </MenuItem>
-      ):(
-        <MenuItem onClick={turnLightMode}>
-          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <LightModeIcon />
-          </IconButton>
-          <p>Dark</p>
-        </MenuItem>
-      )}
-      
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
+function SittingMenu() {
+  const menu = useMenu();
+  return (
+    <Grid sx={{display:"flex"}} alignItems="center" justifyContent="center">
+      <Tooltip title="Open settings">
+        <IconButton onClick={menu.open}>
+          <MenuIcon/>
         </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
+      </Tooltip>
+      <ToggleMenu state={menu}>
+        <MenuItem onClick={menu.close}>Profile</MenuItem>
+        <MenuItem onClick={menu.close}>My account</MenuItem>
+        <MenuItem onClick={menu.close}>Logout</MenuItem>
+      </ToggleMenu>
+    </Grid>
+  )
+}
+
+function UserMenu() {
+  const menu = useMenu();
+  return (
+    <Grid sx={{display:"flex"}} alignItems="center" justifyContent="center">
+      <Tooltip title="Username">
+        <IconButton onClick={menu.open}>
+          <Avatar alt="Remy Sharp" src="/images/ajmir_raziqi_sm.jpg" />
         </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+      </Tooltip>
+      <ToggleMenu state={menu}>
+        <MenuItem onClick={menu.close}>Profile</MenuItem>
+        <MenuItem onClick={menu.close}>My account</MenuItem>
+        <MenuItem onClick={menu.close}>Logout</MenuItem>
+      </ToggleMenu>
+    </Grid>
+  )
+}
+
+
+function MainTitle() {
+  return (
+    <Grid flexGrow={1} sx={{display:"flex"}} alignItems="center" justifyContent="center">
+      <LogoIcon sx={{ mr: 1 }} fontSize="large"/>
+      <Typography
+        variant="h6"
+        noWrap
+        component="a"
+        href="/"
+        sx={{
+          mr: 2,
+          fontFamily: 'monospace',
+          fontWeight: 700,
+          letterSpacing: '.3rem',
+          color: 'inherit',
+          textDecoration: 'none',
+        }}
+      >
+        SocialMedia
+      </Typography>
+    </Grid>
+  )
+}
+
+export default function Navbar(){
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="sticky">
+    <AppBar position="sticky">
+      <Container maxWidth="md">
         <Toolbar>
-         
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            SocialMedia
-          </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            
-            {themeMode === "light"?(
-              <IconButton onClick={turnDarkMode} size="large" aria-label="show 4 new mails" color="inherit">
-                <DarkModeIcon />
-              </IconButton>
-            ):(
-              <IconButton onClick={turnLightMode} size="large" aria-label="show 4 new mails" color="inherit">
-                <LightModeIcon />
-              </IconButton>
-            )}
-           
-            
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
+          <Grid container justifyContent="space-between" alighItems="center">
+            <SittingMenu/>
+            <MainTitle/>
+            <UserMenu/>
+          </Grid>
         </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Box>
+      </Container>
+    </AppBar>
   );
-}
+};
