@@ -4,6 +4,7 @@ import {
 } from "@reduxjs/toolkit";
 import { countReducer } from "./countState";
 import { themeReducer } from "./themeState";
+import { Provider } from "react-redux";
 
 
 const mainReducer = combineReducers({
@@ -16,8 +17,10 @@ export const store = configureStore({
 });
 
 
-// debugding log
-store.subscribe(()=>{
-  console.log(store.getState())
-})
+export const StateProvider = ({children})=> <Provider store={store}>{children}</Provider>;
+
+// // debugding log
+// store.subscribe(()=>{
+//   console.log(store.getState())
+// })
 

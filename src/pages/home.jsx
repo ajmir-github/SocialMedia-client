@@ -1,5 +1,5 @@
 import { Grid, Paper } from "@mui/material";
-import NavBar from "../componenets/NavBar";
+import Navbar from "../componenets/Navbar";
 import Sidebar from "../componenets/Sidebar";
 import Main from "../componenets/Main";
 import Ads from "../componenets/Ads";
@@ -8,7 +8,7 @@ import Ads from "../componenets/Ads";
 export default function Home() {
   return <>
     
-    <NavBar/>
+    <Navbar/>
 
     <Grid container sx={{pt:{xs:0.5, md:1}, pb:2}}>
       

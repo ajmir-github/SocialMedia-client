@@ -2,9 +2,7 @@
 import {
   createTheme,
   CssBaseline,
-  ThemeProvider,
-  // Box,
-  // styled
+  ThemeProvider as Provider,
 } from "@mui/material";
 import {
   useSelector,
@@ -29,14 +27,14 @@ const lightTheme = createTheme({
 // }))
 
 
-export default function AppTheme({children}) {
+export default function ThemeProvider({children}) {
   const themeMode = useSelector(s=>s.theme);
   return (
-    <ThemeProvider theme={themeMode==="light"?lightTheme:darkTheme}>
+    <Provider theme={themeMode==="light"?lightTheme:darkTheme}>
       <CssBaseline/>
       {/* <BodyBackground> */}
         {children}
       {/* </BodyBackground> */}
-    </ThemeProvider>
+    </Provider>
   )
 }

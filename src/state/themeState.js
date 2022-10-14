@@ -1,4 +1,4 @@
-const themeInitValue = "light";
+const themeInitValue = "dark";
 
 export const themeActions = {
   darkMode:"THEMEMODE_DARK",

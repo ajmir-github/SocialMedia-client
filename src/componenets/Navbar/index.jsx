@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { themeActions } from "../state/themeState";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -18,6 +16,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { useThemeActions } from "../../hooks/useThemeActions";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -59,15 +58,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar() {
-  const themeMode = useSelector(s=>s.theme);
-  const dispatch = useDispatch();
-  const turnLightMode = ()=>{
-    dispatch({type:themeActions.lightMode})
-  }
-  const turnDarkMode = ()=>{
-    dispatch({type:themeActions.darkMode})
-  }
+export default function Navbar() {
+  const {
+    themeMode,
+    turnLightMode,
+    turnDarkMode
+  } = useThemeActions();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -130,6 +126,22 @@ export default function NavBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      {themeMode === "light"?(
+        <MenuItem onClick={turnDarkMode}>
+          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <DarkModeIcon />
+          </IconButton>
+          <p>Light</p>
+        </MenuItem>
+      ):(
+        <MenuItem onClick={turnLightMode}>
+          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <LightModeIcon />
+          </IconButton>
+          <p>Dark</p>
+        </MenuItem>
+      )}
+      
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
@@ -189,6 +201,7 @@ export default function NavBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            
             {themeMode === "light"?(
               <IconButton onClick={turnDarkMode} size="large" aria-label="show 4 new mails" color="inherit">
                 <DarkModeIcon />
