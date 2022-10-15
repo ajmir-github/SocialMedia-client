@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { themeActions } from "../state/themeState"; 
 
-export function useThemeActions(){
+
+
+export default function useThemeActions(){
   const themeMode = useSelector(s=>s.theme);
   const dispatch = useDispatch();
   const turnLightMode = ()=>{

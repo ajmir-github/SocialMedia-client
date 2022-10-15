@@ -8,6 +8,9 @@ import {
   useSelector,
 } from "react-redux";
 
+import Scrollbar from "./Scrollbar";
+
+
 // background-color: #e5e5f7;
 // opacity: 0.8;
 // background: repeating-linear-gradient( -45deg, #444cf7, #444cf7 5px, #e5e5f7 5px, #e5e5f7 25px );
@@ -26,15 +29,17 @@ const lightTheme = createTheme({
 //   background:"repeating-linear-gradient( -45deg, #1976d2, transparent 1px,  transparent 30px )",
 // }))
 
+  
+
+
 
 export default function ThemeProvider({children}) {
   const themeMode = useSelector(s=>s.theme);
   return (
     <Provider theme={themeMode==="light"?lightTheme:darkTheme}>
       <CssBaseline/>
-      {/* <BodyBackground> */}
-        {children}
-      {/* </BodyBackground> */}
+      <Scrollbar/>
+      {children}
     </Provider>
   )
 }

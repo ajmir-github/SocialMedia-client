@@ -20,7 +20,7 @@ export default function FeedActions() {
     <Grid item container gap={1}>
       <Button
         color="primary"
-        variant="outlined"
+        variant="contained"
         startIcon={ <PostAddIcon />}
       >
         Post
@@ -29,7 +29,7 @@ export default function FeedActions() {
       <Button
         aria-label="delete"
         color="primary"
-        variant="outlined"
+        variant="contained"
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"

@@ -17,7 +17,7 @@ export default function AttachedFiles() {
       <ListItem
         secondaryAction={
           <IconButton edge="end" aria-label="delete">
-            <DeleteIcon color="error"/>
+            <DeleteIcon color="primary"/>
           </IconButton>
         }
       >
@@ -35,7 +35,7 @@ export default function AttachedFiles() {
       <ListItem
         secondaryAction={
           <IconButton edge="end" aria-label="delete">
-            <DeleteIcon color="error"/>
+            <DeleteIcon color="primary"/>
           </IconButton>
         }
       >

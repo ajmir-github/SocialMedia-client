@@ -7,10 +7,15 @@ export function useMenu() {
   const isOpen = Boolean(anchorEl);
   const open = (event) => setAnchorEl(event.currentTarget)
   const close = () => setAnchorEl(null);
+  const onClose = callback => ()=>{
+    close();
+    callback();
+  }
   return {
     isOpen,
     open,
     close,
+    onClose,
     anchorEl
   }
 }

@@ -1,5 +1,6 @@
 // Imports
 import { Router, Route } from "./componenets/Router";
+// import "./App.css";
 // Pages
 import Home from "./pages/home";
 import SignUp from "./pages/signUp";
