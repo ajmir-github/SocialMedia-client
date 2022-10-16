@@ -1,15 +1,13 @@
 import {
   Grid,
-  Paper,
   Typography,
   Button,
   Card,
   CardContent,
   CardActions,
   CardMedia,
-  Box
 } from '@mui/material';
-import GlassPaper from "../GlassPaper";
+import GlassPaper from "../../utils/GlassPaper";
 
 export default function AdsCard({image, content}) {
   return (

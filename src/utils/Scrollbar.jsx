@@ -14,5 +14,5 @@ const style = `
 `
 
 export default function ScrollBar(){
-  return <style jsx>{style}</style>
+  return <style jsx="true">{style}</style>
 }

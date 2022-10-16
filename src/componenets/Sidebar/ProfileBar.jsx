@@ -1,9 +1,20 @@
-import { AppBar, Avatar, Badge, Box, Fab, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemText, makeStyles, Paper, styled, Typography } from "@mui/material";
+import {
+  Avatar,
+  Badge,
+  Fab,
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography
+} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import FolderIcon from "@mui/icons-material/TagFaces";
 import LocationIcon from "@mui/icons-material/GpsFixed";
 import DateIcon from "@mui/icons-material/DateRange";
-import GlassPaper from "../GlassPaper";
+import GlassPaper from "../../utils/GlassPaper";
 
 
 export default function ProfileBar() {

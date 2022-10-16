@@ -5,7 +5,7 @@ import {
 import FeedTextBox from "./FeedTextBox";
 import AttachedFiles from "./AttachedFiles";
 import FeedActions from "./FeedActions";
-import GlassPaper from "../GlassPaper";
+import GlassPaper from "../../utils/GlassPaper";
 
 
 export default function Feed() {

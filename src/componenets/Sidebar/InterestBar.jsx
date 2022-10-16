@@ -1,14 +1,11 @@
  import {
-  Badge,
   Chip,
-  Grid,
-  Paper,
   Stack,
   Typography,
   IconButton
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import GlassPaper from "../GlassPaper";
+import GlassPaper from "../../utils/GlassPaper";
 
 
 export default function InterestBar() {
