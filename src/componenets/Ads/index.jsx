@@ -2,14 +2,19 @@ import {
   Grid,
 
 } from '@mui/material';
+import { useEffect } from 'react';
 
 import AdsCard from './AdsCard';
 
 
 
 export default function Ads() {
+
   return (
-    <Grid item sx={{p:{xs:0.2, sm:0.4, md:0.6, lg:0.8}, position: "sticky", top: 0}} >
+    <Grid
+      item
+      sx={{mb:2, p:{xs:0.2, sm:0.4, md:0.6, lg:0.8}, position: "sticky", top: 0}}
+    >
       <Grid container gap={1} justifyContent="center" flexDirection="column">
         
         <AdsCard

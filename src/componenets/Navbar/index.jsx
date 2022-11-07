@@ -15,7 +15,7 @@ export default function Navbar(){
   const [drawerState, setDrawerState] = useState(false);
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar>
         <Grid container justifyContent="space-between" alighItems="center">
           <SideNav state={drawerState} setState={setDrawerState}/>

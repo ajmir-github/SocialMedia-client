@@ -1,47 +1,47 @@
-import { Grid, Paper } from "@mui/material";
+import {
+  Container,
+  Grid
+} from "@mui/material";
+import { useBreakPoint } from "../hooks/useBreakPoint";
 import Navbar from "../componenets/Navbar";
-import Sidebar from "../componenets/Sidebar";
 import Main from "../componenets/Main";
 import Ads from "../componenets/Ads";
 
 
 export default function Home() {
+  let onlyMobile = useBreakPoint(b=>b.up("md"));
   return <>
     
     <Navbar/>
 
-    <Grid container sx={{pt:{xs:0.5, md:1}, pb:2}}>
-      
+    <Container>
       <Grid
-        item
-        xs={12}
-        sm={6}
-        md={3}
-        sx={{order:{"xs":1, "md":1}}}
+        container
+        sx={{pt:{xs:0.5, md:1}, pb:2, mt:"80px"}}
       >
-        <Sidebar/>
-      </Grid>
+        
+        <Grid
+          item
+          xs={12}
+          md={9}
+          sx={{order:{"xs":2, "md":1}}}
+          >
+          <Main/>
+        </Grid>
 
-      <Grid
-        item
-        xs={12}
-        sm={12}
-        md={6}
-        sx={{order:{"xs":3, "md":2}}}
-        >
-        <Main/>
-      </Grid>
+        {onlyMobile && (
+          <Grid
+            item
+            xs={12}
+            md={3}
+            sx={{order:{"xs":1, "md":2}}}
+            >
+            <Ads/>
+          </Grid>
+        )}
 
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        md={3}
-        sx={{order:{"xs":2, "md":3}}}
-        >
-        <Ads/>
-      </Grid>
 
-    </Grid>
+      </Grid>
+    </Container>
   </>
 }

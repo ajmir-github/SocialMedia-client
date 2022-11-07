@@ -11,7 +11,7 @@ export const GlassProperties = theme => ({
 
 export const GlassPaperRaw = styled(Paper)(({theme}) => ({
   ...GlassProperties(theme),
-  // borderRadius:"1rem",
+  borderRadius:"1rem",
   overflow:"hidden",
   width:"100%"
 }));
@@ -20,7 +20,7 @@ export const GlassPaperRaw = styled(Paper)(({theme}) => ({
 export default function GlassPaper({children, sx}) {
   return (
     <GlassPaperRaw
-      variant="outlined"
+      elevation={2}
       sx={sx}
     >{children}</GlassPaperRaw>
   )

@@ -89,17 +89,18 @@ export default function SideNav({state, setState}) {
             {themeMode==="light"?(
               <ListItemButton onClick={turnDarkMode}>
                 <ListItemIcon>
-                  <DarkModeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Light" />
-              </ListItemButton>
-            ):(
-              <ListItemButton onClick={turnLightMode}>
-                <ListItemIcon>
                   <LightModeIcon />
                 </ListItemIcon>
                 <ListItemText primary="Dark"/>
               </ListItemButton>
+            ):(
+              
+              <ListItemButton onClick={turnLightMode}>
+              <ListItemIcon>
+                <DarkModeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Light" />
+            </ListItemButton>
             )}
             
           </ListItem>

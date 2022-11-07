@@ -15,7 +15,7 @@ export default function AdsCard({image, content}) {
     <GlassPaper>
       <Card  sx={{ width: "100%", background:"none", border:"none" }} variant="outlined">
         <CardMedia
-          sx={{maxHeight:340}}
+          // sx={{maxHeight:340}}
           component="img"
           image={image.src}
           alt={image.alt}
